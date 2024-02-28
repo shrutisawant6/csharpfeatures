@@ -458,6 +458,7 @@ namespace CSharpImprovements
         }
 
         //https://www.syncfusion.com/blogs/post/struct-record-class-in-csharp.aspx
+        //https://learn.microsoft.com/en-us/answers/questions/1003951/c-difference-between-record-and-class
         private static void ClassRecordStruct()
         {
             #region Class - reference type
