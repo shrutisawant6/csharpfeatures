@@ -76,7 +76,7 @@ namespace CSharpImprovements
             ////Right way to throw exception
             //RethrowException();
 
-            //Class VS Record VS Struct
+            ////Class VS Record VS Struct
             //ClassRecordStruct();
         }
 
