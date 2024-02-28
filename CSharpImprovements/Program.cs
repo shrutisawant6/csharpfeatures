@@ -457,6 +457,7 @@ namespace CSharpImprovements
             }
         }
 
+        //https://www.syncfusion.com/blogs/post/struct-record-class-in-csharp.aspx
         private static void ClassRecordStruct()
         {
             #region Class - reference type
