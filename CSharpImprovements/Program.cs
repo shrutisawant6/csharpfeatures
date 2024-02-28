@@ -75,6 +75,9 @@ namespace CSharpImprovements
 
             ////Right way to throw exception
             //RethrowException();
+
+            //Class VS Record VS Struct
+            //ClassRecordStruct();
         }
 
         //https://www.youtube.com/watch?v=eqqBzwIIM-4
@@ -452,6 +455,64 @@ namespace CSharpImprovements
                  */
                 //throw ex;
             }
+        }
+
+        private static void ClassRecordStruct()
+        {
+            #region Class - reference type
+
+            Console.WriteLine("Class");
+            Console.WriteLine("****************************");
+            ClassPerson classPerson = new()
+            {
+                Age = 30,
+                Name = "Novak Djokovic"
+            };
+            Console.WriteLine(classPerson.Name + " " + classPerson.Age); // Novak Djokovic 30
+
+            var ClassPerson1 = classPerson;
+            ClassPerson1.Age = 29;
+            Console.WriteLine(classPerson.Name + " " + classPerson.Age); // Novak Djokovic 29
+            Console.WriteLine(ClassPerson1.Name + " " + ClassPerson1.Age); // Novak Djokovic 29
+            //Class is reference type, that implies both the objects will have same reference
+
+            #endregion
+
+            #region Struct - value type
+
+            Console.WriteLine();
+            Console.WriteLine("Struct");
+            Console.WriteLine("****************************");
+            StructPerson structPerson = new()
+            {
+                Age = 30,
+                Name = "Novak Djokovic"
+            };
+            Console.WriteLine(structPerson.Name + " " + structPerson.Age); // Novak Djokovic 30
+
+            var structPerson1 = structPerson;
+            structPerson1.Age = 29;
+            Console.WriteLine(structPerson.Name + " " + structPerson.Age); // Novak Djokovic 30
+            Console.WriteLine(structPerson1.Name + " " + structPerson1.Age); // Novak Djokovic 29
+            //Struct is value type, that implies changes to one object wont be impact another object
+
+            #endregion
+
+            #region Record - reference type/value type
+
+            Console.WriteLine();
+            Console.WriteLine("Record");
+            Console.WriteLine("****************************");
+            Record1Person record1Person = new("Novak Djokovic", 30);
+            Console.WriteLine(record1Person.Name + " " + record1Person.Age); // Novak Djokovic 30
+            //record1Person.Name = "Cannot assign";//not possible(Compiler error), values can only be assigne during initialization, individual property cannot be changed.
+
+            var _record1Person = record1Person with { Age = 29 };
+            Console.WriteLine(record1Person); // Person { Name = Novak Djokovic, Age = 30 }
+            Console.WriteLine(_record1Person); // Person { Name = Novak Djokovic, Age = 29 }
+            //Record is reference type that behaves identically to the value type when it relates to value equality
+            //init property - cannot change value/immutable
+            #endregion
         }
     }
 }
