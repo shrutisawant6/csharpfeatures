@@ -78,6 +78,9 @@ namespace CSharpImprovements
 
             ////Class VS Record VS Struct
             //ClassRecordStruct();
+
+            ////Immediate VS Deferred LINQ
+            //ImmediateDeferredLINQ();
         }
 
         //https://www.youtube.com/watch?v=eqqBzwIIM-4
@@ -516,5 +519,22 @@ namespace CSharpImprovements
             //init property - cannot change value/immutable
             #endregion
         }
+
+        private static void ImmediateDeferredLINQ()
+        {
+            var faker = new Faker<Person>()
+                .RuleFor(x => x.FirstName, f => f.Person.FirstName)
+                .UseSeed(1);
+
+            var names = faker.Generate(10);
+
+            var immediateExecutionOfLINQ = names.Take(5).Where(n => n.FirstName == "Terri").ToList();//the result is evaluated using ToList()
+            //if a result is to be evaluated immediately, we use immediate execution
+
+            var deferredExecutionOfLINQ = names.Take(5);//stil Enumerable
+            deferredExecutionOfLINQ = names.Where(n => n.FirstName == "Terri");//stil Enumerable
+            deferredExecutionOfLINQ = deferredExecutionOfLINQ.ToList();//the result is evaluated using ToList()
+            //if a result is to be evaluated after a serious of conditions, we use deferred execution
+        } 
     }
 }
