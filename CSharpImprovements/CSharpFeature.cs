@@ -13,4 +13,4 @@
 
         public string AdditionalInfo { get; set; }
     }
-}
+ }
